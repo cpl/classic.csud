@@ -18,6 +18,8 @@
 #include <usbd/pipe.h>
 #include <usbd/usbd.h>
 
+#include <stdlib.h>
+
 #define ControlMessageTimeout 10
 
 void HubLoad() 

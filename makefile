@@ -6,8 +6,8 @@
 ###############################################################################
 
 # Default parameters
-TYPE ?= LOWLEVEL
-TARGET ?= NONE
+TYPE ?= STANDALONE
+TARGET ?= RPI
 CONFIG ?= FINAL
 
 # The intermediate directory for compiled object files.
@@ -32,11 +32,11 @@ all:
 	@echo "Parameters:"
 	@echo " config - DEBUG or FINAL (default)"
 	@echo "          alters amount of messages, checks, and the speed."
-	@echo " type   - STANDALONE, LOWLEVEL (default), or DRIVER"
+	@echo " type   - STANDALONE (default), LOWLEVEL, or DRIVER"
 	@echo "          alters how complete the driver is STANDALONE for no external"
 	@echo "          dependencies LOWLEVEL for only key dependencies, DRIVER for" 
 	@echo "          typical levels."
-	@echo " target - RPI, NONE (default)"
+	@echo " target - RPI (default), NONE"
 	@echo "          alters the target system. NONE for dummy driver, RPI for" 
 	@echo "          the RaspberryPi"
 	@echo " gnu    - A gnu compiler prefix (arm-none-eabi-) or empty (default)."
