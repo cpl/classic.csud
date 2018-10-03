@@ -46,7 +46,7 @@ u32 KeyboardIndex(u32 address) {
 	return 0xffffffff;
 }
 
-u32 KeyboardGetAddress(u32 index) {
+u32 csudKeyboardGetAddress(u32 index) {
 	if (index > keyboardCount) return 0;
 
 	for (u32 i = 0; index >= 0 && i < KeyboardMaxKeyboards; i++) {
@@ -133,7 +133,7 @@ Result KeyboardAttach(struct UsbDevice *device, u32 interface) {
 	}
 
 	if (keyboardNumber == 0xffffffff) {
-		LOG("KBD: PANIC! Driver in inconsistent state! KeyboardCount is inaccurate.\n");
+		LOG("KBD: PANIC! Driver in inconsistent state! csudKeyboardCount is inaccurate.\n");
 		KeyboardDeallocate(device);
 		return ErrorGeneral;
 	}
@@ -230,11 +230,11 @@ Result KeyboardAttach(struct UsbDevice *device, u32 interface) {
 	return OK;
 }
 
-u32 KeyboardCount() {
+u32 csudKeyboardCount() {
 	return keyboardCount;
 }
 
-Result KeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds) {
+Result csudKeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds) {
 	u32 keyboardNumber;
 	struct KeyboardDevice *data;
 
@@ -262,7 +262,7 @@ Result KeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds) {
 	return HidWriteDevice(keyboards[keyboardNumber], data->LedReport->Index);
 }
 
-struct KeyboardLeds KeyboardGetLedSupport(u32 keyboardAddress) {
+struct KeyboardLeds csudKeyboardGetLedSupport(u32 keyboardAddress) {
 	u32 keyboardNumber;
 	struct KeyboardDevice *data;
 	
@@ -272,7 +272,7 @@ struct KeyboardLeds KeyboardGetLedSupport(u32 keyboardAddress) {
 	return data->LedSupport;
 }
 
-Result KeyboardPoll(u32 keyboardAddress) {
+Result csudKeyboardPoll(u32 keyboardAddress) {
 	u32 keyboardNumber;
 	Result result;
 	struct KeyboardDevice *data;
@@ -315,7 +315,7 @@ Result KeyboardPoll(u32 keyboardAddress) {
 	return OK;
 }
 
-struct KeyboardModifiers KeyboardGetModifiers(u32 keyboardAddress) {
+struct KeyboardModifiers csudKeyboardGetModifiers(u32 keyboardAddress) {
 	u32 keyboardNumber;
 	struct KeyboardDevice *data;
 	
@@ -325,7 +325,7 @@ struct KeyboardModifiers KeyboardGetModifiers(u32 keyboardAddress) {
 	return data->Modifiers;
 }
 
-u32 KeyboardGetKeyDownCount(u32 keyboardAddress) {
+u32 csudKeyboardGetKeyDownCount(u32 keyboardAddress) {
 	u32 keyboardNumber;
 	struct KeyboardDevice *data;
 	
@@ -347,10 +347,10 @@ bool KeyboadGetKeyIsDown(u32 keyboardAddress, u16 key) {
 	return false;
 }
 
-u16 KeyboardGetKeyDown(u32 keyboardAddress, u32 index) {
+u16 csudKeyboardGetKeyDown(u32 keyboardAddress, u32 index) {
 	u32 keyboardNumber;
 	struct KeyboardDevice *data;
-	u32 keyCount = KeyboardGetKeyDownCount(keyboardAddress);
+	u32 keyCount = csudKeyboardGetKeyDownCount(keyboardAddress);
 	
 	keyboardNumber = KeyboardIndex(keyboardAddress);
 	if (keyboardNumber == 0xffffffff) return 0;

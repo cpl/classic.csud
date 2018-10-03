@@ -101,7 +101,7 @@ Result KeyboardAttach(struct UsbDevice *device, u32 interface);
 /**
 	\brief Returns the number of keyboards connected to the system.	
 */
-u32 KeyboardCount();
+u32 csudKeyboardCount();
 
 /**
 	\brief Sets the keyboard LEDs to the state given in leds.
@@ -109,7 +109,7 @@ u32 KeyboardCount();
 	Sets the keyboard LEDs to the state given in leds. Unimplemented LEDs are 
 	ignored silently. 
 */
-Result KeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds); 
+Result csudKeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds); 
 
 /**
 	\brief Gets a list of available keyboard LEDs.
@@ -117,7 +117,7 @@ Result KeyboardSetLeds(u32 keyboardAddress, struct KeyboardLeds leds);
 	Reads the availablility of keyboard LEDs from the report descriptor. LEDs 
 	that are present are set to 1, and those than are not are set to 0.
 */
-struct KeyboardLeds KeyboardGetLedSupport(u32 keyboardAddress); 
+struct KeyboardLeds csudKeyboardGetLedSupport(u32 keyboardAddress); 
 
 /**
 	\brief Checks a given keyboard.
@@ -125,7 +125,7 @@ struct KeyboardLeds KeyboardGetLedSupport(u32 keyboardAddress);
 	Reads back the report from a given keyboard and parses it into the internal
 	fields. These can be accessed with KeyboardGet... methods
 */
-Result KeyboardPoll(u32 keyboardAddress);
+Result csudKeyboardPoll(u32 keyboardAddress);
 
 /**
 	\brief Reads the modifier keys from a keyboard.
@@ -133,7 +133,7 @@ Result KeyboardPoll(u32 keyboardAddress);
 	Reads back the state of the modifier keys from the last sucessfully 
 	received report. Zeros out by default.
 */
-struct KeyboardModifiers KeyboardGetModifiers(u32 keyboardAddress);
+struct KeyboardModifiers csudKeyboardGetModifiers(u32 keyboardAddress);
 
 /**
 	\brief Returns the number of keys currently held down.
@@ -142,7 +142,7 @@ struct KeyboardModifiers KeyboardGetModifiers(u32 keyboardAddress);
 	the keyboard reaches its key limit, this reports the last sensible report 
 	received.
 */
-u32 KeyboardGetKeyDownCount(u32 keyboardAddress);
+u32 csudKeyboardGetKeyDownCount(u32 keyboardAddress);
 
 /**
 	\brief Returns whether or not a particular key is held down.
@@ -158,7 +158,7 @@ bool KeyboadGetKeyIsDown(u32 keyboardAddress, u16 key);
 	Reads back the number of the nth key that was held down in the last 
 	successfully received report.
 */
-u16 KeyboardGetKeyDown(u32 keyboardAddress, u32 index);
+u16 csudKeyboardGetKeyDown(u32 keyboardAddress, u32 index);
 
 /** 
 	\brief Returns the device address of the nth connected keyboard.
@@ -166,7 +166,7 @@ u16 KeyboardGetKeyDown(u32 keyboardAddress, u32 index);
 	Keyboards that are connected are stored in an array, and this method 
 	retrieves the nth item from that array. Returns 0 on error.
 */
-u32 KeyboardGetAddress(u32 index);
+u32 csudKeyboardGetAddress(u32 index);
 
 
 #ifdef __cplusplus

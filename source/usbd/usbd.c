@@ -42,7 +42,7 @@ void UsbLoad()
 		InterfaceClassAttach[i] = NULL;
 }
 
-Result UsbInitialise() {
+Result csudUsbInitialise() {
 	Result result;
 
 	ConfigurationLoad();
@@ -640,7 +640,7 @@ Result UsbAttachRootHub() {
 	return UsbAttachDevice(Devices[0]);
 }
 
-void UsbCheckForChange() {
+void csudUsbCheckForChange() {
 	if (Devices[0] != NULL &&
 		Devices[0]->DeviceCheckForChange != NULL)
 		Devices[0]->DeviceCheckForChange(Devices[0]);

@@ -29,7 +29,7 @@ extern "C"
 	Initialises the USB driver by performing necessary interfactions with the
 	host controller driver, and enumerating the device tree.
 */
-Result UsbInitialise();
+Result csudUsbInitialise();
 
 /**
 	\brief Gets the descriptor for a given device.
@@ -104,7 +104,7 @@ struct UsbDevice *UsbGetRootHub();
 	Recursively calls HubCheckConnection on all ports on all hubs connected to 
 	the root hub.
 */
-void UsbCheckForChange();
+void csudUsbCheckForChange();
 
 
 #ifdef __cplusplus
