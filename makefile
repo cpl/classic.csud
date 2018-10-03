@@ -34,10 +34,10 @@ all:
 	@echo "          alters amount of messages, checks, and the speed."
 	@echo " type   - STANDALONE (default), LOWLEVEL, or DRIVER"
 	@echo "          alters how complete the driver is STANDALONE for no external"
-	@echo "          dependencies LOWLEVEL for only key dependencies, DRIVER for" 
+	@echo "          dependencies LOWLEVEL for only key dependencies, DRIVER for"
 	@echo "          typical levels."
 	@echo " target - RPI (default), NONE"
-	@echo "          alters the target system. NONE for dummy driver, RPI for" 
+	@echo "          alters the target system. NONE for dummy driver, RPI for"
 	@echo "          the RaspberryPi"
 	@echo " gnu    - A gnu compiler prefix (arm-none-eabi-) or empty (default)."
 	@echo "          The compiler chain to use (for cross compiling)."
@@ -49,28 +49,28 @@ all:
 # -Wno-packet-bitfield-compat: Do not warn about structures which would complie differently on older gcc.
 # -fshort-wchar: Treat wchar as a 16 bit value.
 # -Wall: Print lots of compiler warnings
-CFLAGS += -std=c99 -fpack-struct -Wno-packed-bitfield-compat -fshort-wchar -Wall 
-CFLAGS += $(patsubst %,-I%,$(INCDIRS)) 
-	
+CFLAGS += -std=c99 -fpack-struct -Wno-packed-bitfield-compat -fshort-wchar -Wall
+CFLAGS += $(patsubst %,-I%,$(INCDIRS))
+
 include $(CONFIGDIR)makefile.in
 include $(SOURCE)makefile.in
 
 # Rule to make everything.
-driver: $(LIBNAME) 
-	
+driver: $(LIBNAME)
+
 # Rule to make the driver file.
 $(LIBNAME) : $(patsubst %/,%, $(BUILD)) $(OBJECTS)
 	-rm -f $(LIBNAME)
 	$(GNU)ar rc $(LIBNAME) $(OBJECTS)
-		
+
 # Rule to make the c object files.
 GCC := $(GNU)gcc $(CFLAGS) -c -I$(INCDIR)
 
 $(BUILD):
 	mkdir $(patsubst %/,%, $(BUILD))
-	
+
 # Rule to clean files.
-clean : 
+clean :
 	-rm -f $(wildcard $(BUILD)*.*)
 	-rm -f $(LIBNAME)
 
