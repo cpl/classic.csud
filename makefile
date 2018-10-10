@@ -6,7 +6,7 @@
 ###############################################################################
 
 # Default parameters
-TYPE ?= STANDALONE
+TYPE ?= CLASSIC
 TARGET ?= RPI
 CONFIG ?= FINAL
 
@@ -32,7 +32,7 @@ all:
 	@echo "Parameters:"
 	@echo " config - DEBUG or FINAL (default)"
 	@echo "          alters amount of messages, checks, and the speed."
-	@echo " type   - STANDALONE (default), LOWLEVEL, or DRIVER"
+	@echo " type   - STANDALONE, LOWLEVEL, or DRIVER (default)"
 	@echo "          alters how complete the driver is STANDALONE for no external"
 	@echo "          dependencies LOWLEVEL for only key dependencies, DRIVER for"
 	@echo "          typical levels."
@@ -60,18 +60,20 @@ driver: $(LIBNAME)
 
 # Rule to make the driver file.
 $(LIBNAME) : $(patsubst %/,%, $(BUILD)) $(OBJECTS)
-	-rm -f $(LIBNAME)
-	$(GNU)ar rc $(LIBNAME) $(OBJECTS)
+	@-rm -f $(LIBNAME)
+	@echo "==== Generating lib: $@"
+	@$(GNU)ar rc $(LIBNAME) $(OBJECTS)
 
 # Rule to make the c object files.
 GCC := $(GNU)gcc $(CFLAGS) -c -I$(INCDIR)
 
 $(BUILD):
-	mkdir $(patsubst %/,%, $(BUILD))
+	@mkdir $(patsubst %/,%, $(BUILD))
 
 # Rule to clean files.
 clean :
-	-rm -f $(wildcard $(BUILD)*.*)
-	-rm -f $(LIBNAME)
+	@-rm -f $(wildcard $(BUILD)*.*)
+	@-rm -f $(LIBNAME)
+	@echo "==== CLEAN CSUD"
 
 .PHONY: clean driver all

@@ -163,7 +163,7 @@ Result KeyboardAttach(struct UsbDevice *device, u32 interface) {
 						if (parse->Report[i]->Fields[j].Usage.Keyboard >= KeyboardLeftControl
 							&& parse->Report[i]->Fields[j].Usage.Keyboard <= KeyboardRightGui)
 							LOG_DEBUGF("KBD: Modifier %d detected! Offset=%x, size=%x\n", parse->Report[i]->Fields[j].Usage.Keyboard, parse->Report[i]->Fields[j].Offset, parse->Report[i]->Fields[j].Size);
-							data->KeyFields[(u16)parse->Report[i]->Fields[j].Usage.Keyboard - (u16)KeyboardLeftControl] = 
+						data->KeyFields[(u16)parse->Report[i]->Fields[j].Usage.Keyboard - (u16)KeyboardLeftControl] = 
 								&parse->Report[i]->Fields[j];
 					} else {
 						LOG_DEBUG("KBD: Key input detected!\n");

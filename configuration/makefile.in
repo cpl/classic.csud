@@ -16,6 +16,9 @@ else ifeq ("$(TYPE)", "LOWLEVEL")
 	CFLAGS += -DTYPE_LOWLEVEL
 else ifeq ("$(TYPE)", "DRIVER")
 	CFLAGS += -DTYPE_DRIVER
+else ifeq ("$(TYPE)", "CLASSIC")
+	CFLAGS += -DTYPE_DRIVER
+	CFLAGS += -DTYPE_CLASSIC
 else
 	CFLAGS += -DTYPE_ERROR 
 endif

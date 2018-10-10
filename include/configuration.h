@@ -63,3 +63,9 @@
 #else
 #	error Please ensure you compile the driver with the makefile provided
 #endif
+
+#if defined TYPE_CLASSIC
+#   define NO_LOG
+#   define CLASSIC
+#   define MEM_NO_RESERVE
+#endif

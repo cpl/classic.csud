@@ -3,8 +3,9 @@ DIR := $(SOURCE)
 OBJECTS += $(BUILD)configuration.c.o
 
 $(BUILD)configuration.c.o: $(DIR)configuration.c
-	$(GCC) $< -o $@
-	
+	@$(GCC) $< -o $@
+	@echo "==== Generating object: $@"
+
 DIR := $(SOURCE)
 include $(DIR)device/makefile.in
 

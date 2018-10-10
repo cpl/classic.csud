@@ -17,6 +17,25 @@ void Bcm2835Load()
 	LOG_DEBUG("CSUD: Broadcom2835 driver version 0.1.\n");
 }
 
+
+#ifdef CLASSIC
+
+Result PowerOnUsb() {
+	volatile u32* mailbox;
+	u32 result;
+
+	mailbox = (u32*)0x2000B880;
+	while (mailbox[6] & 0x80000000);
+	mailbox[8] = 0x80;
+	do {
+		while (mailbox[6] & 0x40000000);		
+	} while (((result = mailbox[0]) & 0xf) != 0);
+	return result == 0x80 ? OK : ErrorDevice;
+}
+
+#endif
+
+
 #ifndef TYPE_DRIVER
 
 void MicroDelay(u32 delay) {
