@@ -146,8 +146,6 @@ void MemoryDeallocate(void* address) {
 	LOG("Platform: Deallocated memory that was never allocated. Ignored, but you should look into it.\n");
 }
 
-#endif
-
 void MemoryCopy(void* destination, void* source, u32 length) {
 	u8 *d, *s;
 	
@@ -166,6 +164,9 @@ void MemoryCopy(void* destination, void* source, u32 length) {
 			*--d = *--s;
 	}
 }
+
+#endif
+
 
 #define FLOAT_TEXT "Floats unsupported."
 
