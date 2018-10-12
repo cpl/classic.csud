@@ -27,8 +27,8 @@ extern "C"
     #define MemoryAllocate(x) cls_knl_malloc(x)
     #define MemoryDeallocate(x) cls_knl_free(x)
 
-    extern void memcopy(void* src, u32 len, void* dst);
-    #define MemoryCopy(s, d, l) memcopy(s, l, d)
+    // extern void memcopy(void* src, u32 len, void* dst);
+    // #define MemoryCopy(s, d, l) memcopy(s, l, d)
 
     extern void wait(u32 delay);
     #define MicroDelay(x) wait(x)
