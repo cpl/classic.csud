@@ -55,6 +55,9 @@ CFLAGS += $(patsubst %,-I%,$(INCDIRS))
 include $(CONFIGDIR)makefile.in
 include $(SOURCE)makefile.in
 
+all:
+	make driver type=CLASSIC target=RPI config=FINAL GNU=arm-none-eabi-
+
 # Rule to make everything.
 driver: $(LIBNAME)
 
