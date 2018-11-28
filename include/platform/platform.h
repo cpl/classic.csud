@@ -21,11 +21,11 @@ extern "C"
 #include <types.h>
 
 #ifdef CLASSIC
-    extern void* cls_knl_malloc(u32 size);
-    extern void  cls_knl_free(void* addr);
+    extern void* kmalloc(u32 size);
+    extern void  kfree(void* addr);
 
-    #define MemoryAllocate(x) cls_knl_malloc(x)
-    #define MemoryDeallocate(x) cls_knl_free(x)
+    #define MemoryAllocate(x) kmalloc(x)
+    #define MemoryDeallocate(x) kfree(x)
 
     // extern void memcopy(void* src, u32 len, void* dst);
     // #define MemoryCopy(s, d, l) memcopy(s, l, d)
